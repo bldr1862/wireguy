@@ -1,10 +1,10 @@
 import torch
 from typing import Literal
 import torch.nn.functional as F
-from .transforms import RESIZE
+from utils.config import RESIZE
 
 
-def get_backbone(size: Literal["s", "b", "l"] = "s"):
+def get_backbone(size: Literal["s", "b", "l"] = "s") -> "Backbone":
     backbone = Backbone(size=size)
     return backbone
 
@@ -23,5 +23,4 @@ class Backbone(torch.nn.Module):
             w = x.shape[-1] // 14
             patch_tokens = patch_tokens.reshape(-1, h, w, dim)
             patch_tokens = patch_tokens.permute(0, 3, 2, 1)  # channel first
-            patch_tokens = F.interpolate(patch_tokens, RESIZE, mode="bilinear")
         return patch_tokens
