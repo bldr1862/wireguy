@@ -22,5 +22,5 @@ class Backbone(torch.nn.Module):
             h = x.shape[-2] // 14
             w = x.shape[-1] // 14
             patch_tokens = patch_tokens.reshape(-1, h, w, dim)
-            patch_tokens = patch_tokens.permute(0, 3, 2, 1)  # channel first
+            patch_tokens = patch_tokens.permute(0, 3, 1, 2)  # channel first
         return patch_tokens
