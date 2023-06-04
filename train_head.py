@@ -88,7 +88,7 @@ train_dataloader = DataLoader(
 val_dataloader = DataLoader(val_ds, shuffle=False, pin_memory=False, batch_size=1)
 
 head.eval()
-train_pred_dir = f"results/train/{ID}"
+train_pred_dir = f"results/{ID}/train"
 Path(train_pred_dir).mkdir(exist_ok=True, parents=True)
 for i, data in enumerate(train_dataloader):
     inputs, label, stem = data
@@ -104,7 +104,7 @@ for i, data in enumerate(train_dataloader):
     dst_path = Path(train_pred_dir).joinpath(f"{stem[0]}.png")
     Image.fromarray(pred_mask[0].astype(np.uint8)).save(dst_path)
 
-val_pred_dir = f"results/val/{ID}"
+val_pred_dir = f"results/{ID}/val"
 Path(val_pred_dir).mkdir(exist_ok=True, parents=True)
 for i, data in enumerate(val_dataloader):
     inputs, label, stem = data
