@@ -43,3 +43,5 @@ for i, data in enumerate(dataloader):
         features = backbone.get_features(image_transform.to(DEVICE))
     out_file = Path(FEATURES_DIR).joinpath(f"{Path(image_path[0]).stem}.pt")
     torch.save(features, out_file)
+    if i == 0:
+        print("Feature shape", features.shape)
